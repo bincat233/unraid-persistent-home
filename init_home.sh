@@ -76,30 +76,37 @@ function help() {
 	echo "  -f, --force		Force to remove the file if it is exist"
 	echo "  -h, --help		Show this help"
 }
-# Parse the command line arguments (with shift)
-if [ $# -eq 0 ]; then
+# Parse the command line arguments (with getopt)
+force=0
+ARGS=$(getopt -o lpfh -l link,push,force,help -- "$@")
+# If the command line is not valid or no arguments, show the help
+if [ $? -ne 0 ] || [ $# -eq 0 ]; then
 	help
 	exit 1
 fi
-while [ $# -gt 0 ]; do
+# Set the arguments to the positional parameters
+eval set -- "$ARGS" 
+while true; do
 	case "$1" in
 		-l|--link)
 			link
+			shift
 			;;
 		-p|--push)
 			push
+			shift
 			;;
 		-f|--force)
 			force=1
+			shift
 			;;
 		-h|--help)
 			help
+			shift
 			;;
-		*)
-			echo "Unknown option: $1"
-			help
-			exit 1
+		--)
+			shift
+			break
 			;;
 	esac
-	shift
 done
