@@ -131,7 +131,7 @@ done
 if [ $link -eq 1 ]; then
 	# If the link variable equals 1, link the files
 	link
-else if [ $push -eq 1 ]; then
+elif [ $push -eq 1 ]; then
 	# If the push variable equals 1, push the files
 	push
 fi
