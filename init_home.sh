@@ -9,6 +9,7 @@ function link() {
 	# Copy this script to /usr/local/bin if it's not already there.
 	if [ ! -f /usr/local/bin/init_home.sh ]; then
 		cp "$0" /usr/local/bin/init_home.sh
+		chmod +x /usr/local/bin/init_home.sh
 	fi
 
 	# Link DEST_DIR to SRC_DIR/persistent if it's not already there.
