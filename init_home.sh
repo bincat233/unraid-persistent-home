@@ -6,9 +6,9 @@ SRC_DIR="/boot/config/home_root"
 DEST_DIR="/root"
 
 function link() {
-	# Link this script to /usr/local/bin if it's not already there.
+	# Copy this script to /usr/local/bin if it's not already there.
 	if [ ! -f /usr/local/bin/init_home.sh ]; then
-		ln -s "$0" /usr/local/bin/init_home.sh
+		cp "$0" /usr/local/bin/init_home.sh
 	fi
 
 	# Link DEST_DIR to SRC_DIR/persistent if it's not already there.
