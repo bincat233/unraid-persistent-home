@@ -6,9 +6,14 @@ SRC_DIR="/boot/config/home_root"
 DEST_DIR="/root"
 
 function link() {
-	# Link if the link not exist
+	# Link this script to /usr/local/bin if it's not already there.
+	if [ ! -f /usr/local/bin/init_home.sh ]; then
+		ln -s "$0" /usr/local/bin/init_home.sh
+	fi
+
+	# Link DEST_DIR to SRC_DIR/persistent if it's not already there.
 	if [ ! -L "$DEST_DIR/persistent" ]; then
-		ln -s $SRC_DIR $DEST_DIR/stable
+		ln -s $SRC_DIR $DEST_DIR/persistent
 	fi
 	
 	# Recursively link all files in SRC_DIR to DEST_DIR
